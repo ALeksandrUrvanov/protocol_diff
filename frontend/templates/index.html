@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol Diff — Протоколы разногласий</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Заголовок -->
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h1 class="display-5">
+                    <i class="fas fa-file-contract"></i>
+                    Protocol Diff
+                </h1>
+                <p class="lead text-muted">Система анализа договора с формированием протокола разногласий и сопроводительного письма</p>
+            </div>
+        </div>
+
+        <!-- Выбор службы -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="mb-3">
+                            <i class="fas fa-list-ul me-2"></i>
+                            Выбор службы
+                        </h5>
+                        <label class="form-label fw-semibold" for="service-select">Тип договора</label>
+                        <select class="form-select form-select-lg" id="service-select" required aria-label="Служба (тип договора)">
+                            <option value="">— Выберите службу —</option>
+                            <!-- заполняется из /api/prompts -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Загрузка файла -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="file-upload-container">
+                    <h4 class="text-center mb-4">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        Загрузка договора
+                    </h4>
+                    
+                    <!-- Drag & Drop зона -->
+                    <div class="drop-zone" id="drop-zone">
+                        <div class="drop-zone-content">
+                            <div class="drop-zone-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="drop-zone-text">
+                                Перетащите файл договора сюда
+                            </div>
+                            <div class="drop-zone-subtext">
+                                Поддерживаемые форматы: PDF, DOCX, PNG, JPG, TIFF, BMP (до 200 МБ)
+                            </div>
+                            <button type="button" class="btn" id="file-select-btn">
+                                <i class="fas fa-folder-open"></i>
+                                Выбрать файл
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Скрытый input для файлов -->
+                    <input type="file" id="file-input" class="d-none" accept=".pdf,.docx,.png,.jpg,.jpeg,.tiff,.tif,.bmp" />
+                    
+                    <!-- Информация о файле -->
+                    <div id="file-info">
+                        <div class="file-info-header">
+                            <i class="fas fa-file-contract file-info-icon"></i>
+                            <div>
+                                <div id="file-name"></div>
+                                <div id="file-size" class="small text-muted"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Прогресс-бар -->
+                        <div id="progress-container">
+                            <div id="progress-text">
+                                <span>Обработка...</span>
+                                <span id="progress-percentage">0%</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div id="progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Кнопка анализа -->
+                        <button type="button" class="btn" id="analyze-btn" disabled>
+                            <i class="fas fa-magic"></i>
+                            Обработать договор
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Результат -->
+        <div class="row" id="results-row" style="display: none;">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-check-circle me-2"></i>
+                        Результат анализа
+                    </div>
+                    <div class="card-body">
+                        <!-- Протокол разногласий -->
+                        <section class="result-section">
+                            <div class="result-header">
+                                <h5>
+                                    <i class="fas fa-file-alt"></i>
+                                    Протокол разногласий
+                                </h5>
+                                <button type="button" class="btn download-btn" id="download-protocol-btn">
+                                    <i class="fas fa-download"></i>
+                                    Скачать
+                                </button>
+                            </div>
+                            <div id="result-protocol" class="result-text"></div>
+                        </section>
+                        
+                        <!-- Сопроводительное письмо -->
+                        <section class="result-section">
+                            <div class="result-header">
+                                <h5>
+                                    <i class="fas fa-envelope"></i>
+                                    Сопроводительное письмо
+                                </h5>
+                                <button type="button" class="btn download-btn" id="download-letter-btn">
+                                    <i class="fas fa-download"></i>
+                                    Скачать
+                                </button>
+                            </div>
+                            <div id="result-letter" class="result-text"></div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ошибки -->
+        <div class="row mt-3" id="error-row" style="display: none;">
+            <div class="col-12">
+                <div class="alert alert-danger">
+                    <h5 class="alert-heading">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Ошибка
+                    </h5>
+                    <div id="error-message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/static/js/app.js"></script>
+</body>
+</html>

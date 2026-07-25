@@ -1,0 +1,318 @@
+/* Стили для компонента загрузки файлов */
+
+/* Основной контейнер загрузки */
+.file-upload-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow-light);
+    border: 2px dashed var(--pale-purple);
+    transition: var(--transition-colors);
+}
+
+/* Drag & Drop зона */
+.drop-zone {
+    border: 3px dashed var(--light-purple);
+    border-radius: var(--radius-lg);
+    padding: 40px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(196, 181, 253, 0.2), rgba(167, 139, 250, 0.1));
+    transition: var(--transition-colors);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.drop-zone:hover {
+    border-color: var(--purple);
+    background: linear-gradient(135deg, rgba(196, 181, 253, 0.25), rgba(167, 139, 250, 0.15));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-purple);
+}
+
+.drop-zone.drag-over {
+    border-color: var(--accent-pink);
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(139, 92, 246, 0.2));
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+}
+
+.drop-zone-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop-zone-icon {
+    font-size: 3rem;
+    color: var(--purple);
+    margin-bottom: 15px;
+    transition: var(--transition-base);
+}
+
+.drop-zone:hover .drop-zone-icon {
+    color: var(--accent-pink);
+    transform: scale(1.1);
+}
+
+.drop-zone-text {
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--dark-purple);
+    margin-bottom: 10px;
+}
+
+.drop-zone-subtext {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* Кнопка выбора файла */
+#file-select-btn {
+    background: var(--secondary-gradient) !important;
+    border: none !important;
+    color: white !important;
+    padding: 12px 25px !important;
+    border-radius: var(--radius-xl) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    font-size: 1.1rem !important;
+    box-shadow: var(--shadow-purple) !important;
+    transition: var(--transition-transform) !important;
+}
+
+#file-select-btn i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+#file-select-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Информация о файле */
+#file-info {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(237, 233, 254, 0.3), rgba(196, 181, 253, 0.2));
+    box-shadow: var(--shadow-light);
+    display: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--pale-purple);
+}
+
+#file-info.show {
+    display: block;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.file-info-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--pale-purple);
+}
+
+.file-info-icon {
+    font-size: 2rem;
+    color: var(--purple);
+    margin-right: 15px;
+}
+
+#file-name {
+    font-weight: var(--font-weight-semibold);
+    color: var(--dark-purple);
+    font-size: 1.1rem;
+    word-break: break-word;
+}
+
+#file-size {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Прогресс-бар */
+#progress-container {
+    margin-top: 20px;
+    display: none;
+    background: linear-gradient(135deg, rgba(196, 181, 253, 0.1), rgba(167, 139, 250, 0.05));
+    padding: 15px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--pale-purple);
+}
+
+#progress-container.show {
+    display: block;
+    animation: slideInProgress 0.3s ease-out;
+}
+
+@keyframes slideInProgress {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#progress-text {
+    font-weight: var(--font-weight-semibold);
+    color: var(--dark-purple);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progress-bar-wrapper {
+    background: rgba(196, 181, 253, 0.3);
+    border-radius: var(--radius-sm);
+    height: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#progress-bar {
+    background: var(--secondary-gradient);
+    height: 100%;
+    border-radius: var(--radius-sm);
+    transition: width 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(139, 92, 246, 0.3);
+}
+
+#progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Кнопка анализа */
+#analyze-btn {
+    background: var(--secondary-gradient) !important;
+    border: none !important;
+    color: white !important;
+    padding: 15px 30px !important;
+    border-radius: var(--radius-xl) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    font-size: 1.2rem !important;
+    box-shadow: var(--shadow-purple) !important;
+    transition: var(--transition-transform) !important;
+    margin-top: 20px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#analyze-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.7s ease;
+}
+
+#analyze-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5) !important;
+}
+
+#analyze-btn:hover::before {
+    left: 100%;
+}
+
+#analyze-btn:disabled:not(.btn-processing) {
+    background: linear-gradient(135deg, #9ca3af, #d1d5db) !important;
+    color: #6b7280 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: var(--shadow-light) !important;
+}
+
+/* Кнопка в состоянии обработки */
+#analyze-btn.btn-processing {
+    background: var(--secondary-gradient) !important;
+    color: white !important;
+    cursor: default !important;
+    opacity: 0.9;
+}
+
+#analyze-btn i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+/* Анимация для спиннера в кнопке */
+.btn-spinner {
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .file-upload-container {
+        padding: 20px;
+    }
+    
+    .drop-zone {
+        padding: 30px 15px;
+    }
+    
+    .drop-zone-icon {
+        font-size: 2.5rem;
+    }
+    
+    .drop-zone-text {
+        font-size: 1.1rem;
+    }
+    
+    #analyze-btn {
+        padding: 12px 25px !important;
+        font-size: 1rem !important;
+    }
+}

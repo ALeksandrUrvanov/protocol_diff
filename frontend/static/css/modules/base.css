@@ -1,0 +1,134 @@
+/* CSS переменные - Благородный серый */
+:root {
+    /* Основные цвета - деловые серые оттенки */
+    --primary-gradient: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
+    --secondary-gradient: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+    --accent-gradient: linear-gradient(135deg, #9ca3af 0%, #d1d5db 100%);
+    
+    /* Серая палитра - благородные оттенки */
+    --dark-purple: #374151;
+    --purple: #6b7280;
+    --light-purple: #9ca3af;
+    --pale-purple: #f3f4f6;
+    --accent-pink: #9ca3af;
+    
+    /* Статусные цвета */
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #8b5cf6;
+    
+    /* Фоны и поверхности */
+    --bg-overlay: rgba(255, 255, 255, 0.95);
+    --bg-card: rgba(255, 255, 255, 0.98);
+    --bg-hover: rgba(139, 92, 246, 0.1);
+    
+    /* Тени */
+    --shadow-light: 0 4px 6px rgba(91, 33, 182, 0.1);
+    --shadow-medium: 0 8px 25px rgba(91, 33, 182, 0.15);
+    --shadow-heavy: 0 15px 35px rgba(91, 33, 182, 0.2);
+    --shadow-purple: 0 4px 20px rgba(139, 92, 246, 0.3);
+    
+    /* Радиусы */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 25px;
+    
+    /* Переходы */
+    --transition-base: 0.3s ease;
+    --transition-transform: transform 0.3s ease, box-shadow 0.3s ease;
+    --transition-colors: background-color 0.3s ease, border-color 0.3s ease;
+    
+    /* Шрифты */
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Текст */
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+}
+
+/* Базовые стили */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 50%, #e5e7eb 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 15px;
+    color: #1f2937;
+}
+
+.container {
+    background: var(--bg-overlay);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow-heavy);
+    backdrop-filter: blur(12px);
+    margin-bottom: 20px;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--dark-purple);
+    font-weight: var(--font-weight-bold);
+}
+
+.display-5 {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: var(--font-weight-bold);
+}
+
+/* Пользовательские скроллбары */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(237, 233, 254, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--purple);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-purple);
+}
+
+/* Общие анимации */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        margin-bottom: 15px;
+        padding: 20px;
+    }
+    
+    .display-5 {
+        font-size: 2rem;
+    }
+}

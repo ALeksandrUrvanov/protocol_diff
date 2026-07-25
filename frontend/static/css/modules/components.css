@@ -1,0 +1,286 @@
+/* Карточки */
+.card {
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-transform);
+    background: var(--bg-card);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.card-header {
+    background: linear-gradient(135deg, rgba(196, 181, 253, 0.2), rgba(167, 139, 250, 0.1));
+    border-bottom: 1px solid var(--pale-purple);
+    font-weight: var(--font-weight-semibold);
+    color: var(--dark-purple);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Кнопки */
+.btn {
+    border-radius: var(--radius-xl);
+    font-weight: var(--font-weight-semibold);
+    transition: var(--transition-transform);
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width var(--transition-base), height var(--transition-base);
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: var(--secondary-gradient) !important;
+    color: white !important;
+    box-shadow: var(--shadow-purple) !important;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5) !important;
+}
+
+.btn-success, .btn-outline-success {
+    background: var(--accent-gradient) !important;
+    color: white !important;
+    box-shadow: var(--shadow-purple) !important;
+    border: none !important;
+}
+
+.btn-success:hover, .btn-outline-success:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(217, 70, 239, 0.5) !important;
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--purple) !important;
+    color: var(--purple) !important;
+    background: transparent !important;
+}
+
+.btn-outline-primary:hover {
+    background: var(--purple) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: var(--shadow-light) !important;
+    opacity: 0.6;
+}
+
+/* Алерты */
+.alert {
+    border: none;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-light);
+}
+
+.alert-info {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(167, 139, 250, 0.05));
+    color: #4c1d95;
+    border-left: 4px solid var(--info-color);
+}
+
+.alert-success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.05));
+    color: #064e3b;
+    border-left: 4px solid var(--success-color);
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.05));
+    color: #92400e;
+    border-left: 4px solid var(--warning-color);
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(248, 113, 113, 0.05));
+    color: #7f1d1d;
+    border-left: 4px solid var(--error-color);
+}
+
+/* Лоадеры */
+.spinner-border {
+    color: var(--purple);
+}
+
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+.processing-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid var(--pale-purple);
+    border-top: 4px solid var(--purple);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Анимации появления */
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Индикаторы загрузки */
+.loading-indicator {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--purple);
+}
+
+.loading-text {
+    margin-top: 15px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--dark-purple);
+}
+
+/* Статусные индикаторы */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: var(--radius-xl);
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-ready {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.05));
+    color: var(--success-color);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-error {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(248, 113, 113, 0.05));
+    color: var(--error-color);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.status-warning {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.05));
+    color: var(--warning-color);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status-processing {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(167, 139, 250, 0.05));
+    color: var(--info-color);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Иконки статуса */
+.status-icon {
+    margin-right: 6px;
+    font-size: 0.9rem;
+}
+
+/* Селекты */
+.form-select {
+    border-radius: var(--radius-md);
+    border: 2px solid var(--pale-purple);
+    padding: 0.75rem 1rem;
+    transition: var(--transition-colors);
+    background-color: white;
+}
+
+.form-select:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.25);
+    outline: none;
+}
+
+/* Цвет выделенной опции в select */
+.form-select option:checked,
+.form-select option:hover {
+    background-color: var(--pale-purple) !important;
+    color: var(--dark-purple) !important;
+}
+
+.form-select-lg {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+}
+
+/* Лейблы */
+.form-label {
+    color: var(--dark-purple);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 0.5rem;
+}
+
+/* Адаптивные стили для компонентов */
+@media (max-width: 768px) {
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .processing-spinner {
+        width: 2rem;
+        height: 2rem;
+        border-width: 3px;
+    }
+    
+    .form-select-lg {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+}

@@ -1,0 +1,56 @@
+/* Protocol Diff - Главный файл стилей */
+
+/* Импорт всех модулей в правильном порядке */
+@import url('modules/base.css');
+@import url('modules/components.css');
+@import url('modules/file-upload.css');
+@import url('modules/results.css');
+
+/* Глобальные настройки для предотвращения горизонтального скролла */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Правила для правильного переноса текста во всех элементах */
+.container, .container-fluid, .row, .col, [class*="col-"] {
+    overflow-x: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Специальные правила для блоков с контентом */
+.card, .card-body, .alert, .list-group-item {
+    overflow-x: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Правила для текстовых элементов */
+p, div, span, h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Дополнительные стили для улучшения UX */
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+/* Плавные переходы для всех интерактивных элементов */
+a, button, .btn {
+    transition: var(--transition-base);
+}
+
+/* Иконки Font Awesome */
+.fa, .fas, .far, .fal, .fab {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}

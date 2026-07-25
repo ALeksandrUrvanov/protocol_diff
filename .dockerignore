@@ -1,0 +1,15 @@
+.venv
+venv
+__pycache__
+*.pyc
+.git
+.idea
+.env
+cache
+README.md
+DEPLOYMENT.md
+scripts
+example
+.pytest_cache
+.coverage
+htmlcov
